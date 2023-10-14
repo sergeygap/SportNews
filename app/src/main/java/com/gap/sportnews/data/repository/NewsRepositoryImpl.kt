@@ -1,4 +1,4 @@
-package com.gap.sportnews.data
+package com.gap.sportnews.data.repository
 
 import com.gap.sportnews.domain.News
 import com.gap.sportnews.domain.NewsRepository
