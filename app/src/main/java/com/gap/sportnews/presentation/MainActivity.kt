@@ -1,7 +1,8 @@
-package com.gap.sportnews
+package com.gap.sportnews.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.gap.sportnews.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
