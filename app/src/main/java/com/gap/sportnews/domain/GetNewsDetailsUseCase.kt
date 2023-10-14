@@ -3,7 +3,7 @@ package com.gap.sportnews.domain
 class GetNewsDetailsUseCase(
     private val repository: NewsRepository
 ) {
-    operator fun invoke(id: Int): News {
+    suspend operator fun invoke(id: Int): News {
         return repository.getNewsDetails(id)
     }
 }
