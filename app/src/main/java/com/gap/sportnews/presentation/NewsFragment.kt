@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.gap.sportnews.databinding.FragmentNewsBinding
+import com.gap.sportnews.presentation.adapter.NewsAdapter
 import com.gap.sportnews.presentation.viewModels.NewsViewModel
 
 class NewsFragment : Fragment() {
@@ -16,6 +17,9 @@ class NewsFragment : Fragment() {
 
     private val viewModel by lazy {
         ViewModelProvider(this)[NewsViewModel::class.java]
+    }
+    private val adapter: NewsAdapter by lazy {
+        NewsAdapter(requireContext())
     }
 
     override fun onCreateView(
@@ -29,7 +33,11 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.test()
+        binding.mainRecyclerView.adapter = adapter
+        viewModel.getNewsList()
+        viewModel.newsLD.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     override fun onDestroyView() {
