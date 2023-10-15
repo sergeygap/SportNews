@@ -1,5 +1,7 @@
 package com.gap.sportnews.presentation
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -44,5 +46,11 @@ class MainActivity : AppCompatActivity() {
         val constraintLayout = findViewById<ConstraintLayout>(R.id.bottomNavigationView)
         constraintLayout.visibility = View.VISIBLE
         super.onBackPressed()
+    }
+
+    companion object {
+        fun newIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
     }
 }
