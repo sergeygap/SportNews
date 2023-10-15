@@ -5,6 +5,6 @@ data class News(
     val title: String,
     val commentCount: Int,
     val socialImage: String,
-    val postedTime: Int,
+    val postedTime: String,
     val content: String
 )

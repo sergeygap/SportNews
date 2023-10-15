@@ -26,6 +26,7 @@ class NewsAdapter(
             with(news) {
                 tvTitle.text = title
                 tvCountComments.text = commentCount.toString()
+                tvDate.text = postedTime
                 Picasso.get().load(socialImage).into(imageViewContent)
             }
         }
