@@ -1,129 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/mainToolbarCommunication"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/news"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/mainToolbarCommunication"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/news"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/toolbar_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_favourite" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:id="@+id/grey_road"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainToolbarCommunication" />
 
         <ImageView
-            android:id="@+id/toolbar_image"
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/count_of_comments"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvBodyNews"
+            app:layout_constraintTop_toBottomOf="@+id/tvBodyNews"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/comment" />
+
+        <TextView
+            android:id="@+id/tvCountComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/black_text"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            tools:text="33" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/light_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            tools:text="10:30 10.10.2023" />
+
+        <ImageView
+            android:id="@+id/imageViewContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/photo_perimetr"
+            android:contentDescription="@string/news_description"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_favourite" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <View
-        android:id="@+id/grey_road"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainToolbarCommunication" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/count_of_comments"
-        app:layout_constraintStart_toStartOf="@+id/tvBodyNews"
-        app:layout_constraintTop_toBottomOf="@+id/tvBodyNews"
-        app:srcCompat="@drawable/comment" />
-
-    <TextView
-        android:id="@+id/tvCountComments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/black_text"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        tools:text="33" />
-
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/light_grey"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        tools:text="10:30 10.10.2023" />
-
-    <ImageView
-        android:id="@+id/imageViewContent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/photo_perimetr"
-        android:contentDescription="@string/news_description"
-        android:scaleType="centerCrop"
-        android:src="@drawable/test_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainToolbarCommunication" />
+            android:src="@drawable/test_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mainToolbarCommunication" />
 
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_medium"
-        android:lineSpacingMultiplier="1.2"
-        android:textColor="@color/black_text"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewContent"
-        app:layout_constraintStart_toStartOf="@+id/imageViewContent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewContent"
-        tools:text="«Реал» прописал отступные 1 млрд евро в контрактах Вальверде и Камавинга из-за опасений насчет предложений из Саудовской Аравии (COPE)" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_medium"
+            android:lineSpacingMultiplier="1.2"
+            android:textColor="@color/black_text"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewContent"
+            app:layout_constraintStart_toStartOf="@+id/imageViewContent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewContent"
+            tools:text="«Реал» прописал отступные 1 млрд евро в контрактах Вальверде и Камавинга из-за опасений насчет предложений из Саудовской Аравии (COPE)" />
 
 
-    <TextView
-        android:id="@+id/tvBodyNews"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
-        android:lineSpacingMultiplier="1.2"
-        android:textColor="@color/black_text"
-        android:textSize="16sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewContent"
-        app:layout_constraintStart_toStartOf="@+id/imageViewContent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        tools:text="««Аль-Духайль» объявил о назначении Кристофа Гальтье на пост главного тренера.
+        <TextView
+            android:id="@+id/tvBodyNews"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_medium"
+            android:lineSpacingMultiplier="1.2"
+            android:textColor="@color/black_text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewContent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/imageViewContent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:text="««Аль-Духайль» объявил о назначении Кристофа Гальтье на пост главного тренера.
 
 Экс-тренер «ПСЖ» заменил на этой должности аргентинца Эрнана Креспо, уволенного после 1 победы в 5 последних матчах.
 
 Кристоф Гальтье покинул «ПСЖ» в июле этого года. В сентябре сообщалось, что по поводу возможного назначения с ним общались «Наполи» и «Марсель»." />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
