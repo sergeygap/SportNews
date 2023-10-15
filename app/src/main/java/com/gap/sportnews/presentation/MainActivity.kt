@@ -2,6 +2,8 @@ package com.gap.sportnews.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.gap.sportnews.R
 import com.gap.sportnews.data.repository.NewsRepositoryImpl
 import com.gap.sportnews.databinding.ActivityMainBinding
@@ -35,5 +37,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+
+    override fun onBackPressed() {
+        val constraintLayout = findViewById<ConstraintLayout>(R.id.bottomNavigationView)
+        constraintLayout.visibility = View.VISIBLE
+        super.onBackPressed()
     }
 }

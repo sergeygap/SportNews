@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso
 class NewsAdapter(
     private val context: Context
 ) : ListAdapter<News, NewsViewHolder>(NewsDiffCallback) {
+
+    var onNewsClickListener: OnNewsClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding = ItemNewsBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -28,8 +30,17 @@ class NewsAdapter(
                 tvCountComments.text = commentCount.toString()
                 tvDate.text = postedTime
                 Picasso.get().load(socialImage).into(imageViewContent)
+                root.setOnClickListener {
+                    onNewsClickListener?.let {
+                        it.onNewsClick(id)
+                    }
+                }
             }
         }
+    }
+
+    interface OnNewsClickListener {
+        fun onNewsClick(id: Int)
     }
 
 }

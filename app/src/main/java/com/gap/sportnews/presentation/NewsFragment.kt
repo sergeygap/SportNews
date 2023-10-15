@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.gap.sportnews.R
 import com.gap.sportnews.databinding.FragmentNewsBinding
 import com.gap.sportnews.presentation.adapter.NewsAdapter
 import com.gap.sportnews.presentation.viewModels.NewsViewModel
@@ -33,11 +34,31 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.mainRecyclerView.adapter = adapter
+        workWithAdapter()
+        workWithViewModel()
+    }
+
+    private fun workWithViewModel() {
         viewModel.getNewsList()
         viewModel.newsLD.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+    }
+
+    private fun workWithAdapter() {
+        binding.mainRecyclerView.adapter = adapter
+        adapter.onNewsClickListener = object :NewsAdapter.OnNewsClickListener {
+            override fun onNewsClick(id: Int) {
+                launchNewsDetailsFragment(id)
+            }
+        }
+    }
+
+    private fun launchNewsDetailsFragment(id: Int) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container_view, NewsDetailsFragment.newInstance(id))
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onDestroyView() {
