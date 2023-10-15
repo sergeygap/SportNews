@@ -13,8 +13,8 @@ class NewsRepositoryImpl : NewsRepository {
         return mapper.mapDtoEntity(apiService.getNewsDetails(id))
     }
 
-    override suspend fun getListNews(): List<News> {
-        return apiService.getListNews().news.map {
+    override suspend fun getListNews(from: Int, count: Int): List<News> {
+        return apiService.getListNews(from, count).news.map {
             mapper.mapDtoEntity(it)
         }
     }

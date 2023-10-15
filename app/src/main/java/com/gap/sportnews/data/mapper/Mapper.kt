@@ -13,14 +13,19 @@ class Mapper {
     fun mapDtoEntity(dto: NewsDto): News {
         val postedTime: String = mapTimeStampToDateTime(dto.postedTime)
         val content = deleteFromHTML(dto.content)
-        return News(
-            dto.id,
-            dto.title,
-            dto.commentCount,
-            dto.socialImage,
-            postedTime,
-            content
-        )
+        val socialImage = if (dto.socialImage == "") {
+            "https://photobooth.cdn.sports.ru/preset/news/0/26/330fd1e1244d39f7545da0057004f.jpeg"
+        } else {
+            dto.socialImage
+        }
+            return News(
+                dto.id,
+                dto.title,
+                dto.commentCount,
+                socialImage,
+                postedTime,
+                content
+            )
     }
 
     private fun deleteFromHTML(content: String): String {

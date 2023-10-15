@@ -52,6 +52,11 @@ class NewsFragment : Fragment() {
                 launchNewsDetailsFragment(id)
             }
         }
+        adapter.onReachEndListener = object : NewsAdapter.OnReachEndListener {
+            override fun onReachEnd() {
+                viewModel.getNewsList()
+            }
+        }
     }
 
     private fun launchNewsDetailsFragment(id: Int) {
