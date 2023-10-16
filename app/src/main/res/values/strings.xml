@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SportNews</string>
+    <string name="news_description">news description</string>
+    <string name="news">Новость</string>
+    <string name="count_of_comments">count of comments</string>
+    <string name="sportnews">SportNews</string>
+    <string name="theme">Тема</string>
+    <string name="cleanFavourites">Очистить избранное</string>
 </resources>
