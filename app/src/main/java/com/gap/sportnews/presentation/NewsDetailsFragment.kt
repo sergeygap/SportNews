@@ -63,10 +63,13 @@ class NewsDetailsFragment : Fragment() {
             stateFavourite = !stateFavourite
             if (stateFavourite) {
                 binding.toolbarImage.setImageResource(R.drawable.ic_favourite_selected)
+                viewModel.addToDb(id.toLong())
             } else {
                 binding.toolbarImage.setImageResource(R.drawable.ic_favourite)
+                viewModel.deleteInDb(id.toLong())
             }
         }
+
     }
 
     private fun workWithViewModel() {

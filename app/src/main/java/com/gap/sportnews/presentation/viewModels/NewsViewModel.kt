@@ -1,5 +1,7 @@
 package com.gap.sportnews.presentation.viewModels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,8 +11,8 @@ import com.gap.sportnews.domain.GetListNewsUseCase
 import com.gap.sportnews.domain.News
 import kotlinx.coroutines.launch
 
-class NewsViewModel : ViewModel() {
-    private val repository = NewsRepositoryImpl()
+class NewsViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository = NewsRepositoryImpl(application)
     private val getListUseCase = GetListNewsUseCase(repository)
     private var from = 0
     private var count = 10

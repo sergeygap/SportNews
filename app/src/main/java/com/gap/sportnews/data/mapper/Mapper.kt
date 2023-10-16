@@ -3,7 +3,9 @@ package com.gap.sportnews.data.mapper
 import android.annotation.SuppressLint
 import android.os.Build
 import android.text.Html
+import com.gap.sportnews.data.database.FavouritesDbModel
 import com.gap.sportnews.data.network.model.NewsDto
+import com.gap.sportnews.domain.Favourites
 import com.gap.sportnews.domain.News
 import java.time.Instant
 import java.time.ZoneId
@@ -26,6 +28,9 @@ class Mapper {
                 postedTime,
                 content
             )
+    }
+    fun mapFavouritesDbModelToFavourites(dbModel: FavouritesDbModel): Favourites {
+        return Favourites(dbModel.id)
     }
 
     private fun deleteFromHTML(content: String): String {
