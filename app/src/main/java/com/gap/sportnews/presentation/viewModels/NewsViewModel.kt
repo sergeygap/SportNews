@@ -15,21 +15,27 @@ class NewsViewModel : ViewModel() {
     private var from = 0
     private var count = 10
     private val _newsLD = MutableLiveData<List<News>>()
+
     val newsLD: LiveData<List<News>>
         get() = _newsLD
 
     fun getNewsList() {
         viewModelScope.launch {
-            val loadedNewsList: MutableList<News>? = newsLD.value?.toMutableList()
+            val loadedNewsList = newsLD.value?.toMutableList()
             if (loadedNewsList != null) {
-                loadedNewsList.addAll(getListUseCase(from, count))// count
+                loadedNewsList.addAll(getListUseCase(from, count))
                 _newsLD.postValue(loadedNewsList)
             } else {
                 _newsLD.postValue(getListUseCase(from, count))
             }
             upPage()
-//                _newsLD.postValue(getListUseCase(from, count))
         }
+    }
+
+    fun updateNewsList() {
+        from = 0
+        _newsLD.value = emptyList()
+        getNewsList()
     }
 
     private fun upPage() {

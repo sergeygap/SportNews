@@ -36,6 +36,14 @@ class NewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         workWithAdapter()
         workWithViewModel()
+        workWithSwipeToRefresh()
+    }
+
+    private fun workWithSwipeToRefresh() {
+        binding.swipeToRefreshLayout.setOnRefreshListener {
+            viewModel.updateNewsList()
+            binding.swipeToRefreshLayout.isRefreshing = false
+        }
     }
 
     private fun workWithViewModel() {
