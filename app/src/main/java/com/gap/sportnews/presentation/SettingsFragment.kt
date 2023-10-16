@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gap.sportnews.databinding.FragmentSettingsBinding
-import java.lang.RuntimeException
 
-class SettingsFragment: Fragment() {
+class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
     private val binding: FragmentSettingsBinding
         get() = _binding ?: throw RuntimeException("SettingsFragment == null")
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,5 +28,9 @@ class SettingsFragment: Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        fun newInstance(): Fragment = SettingsFragment()
     }
 }
