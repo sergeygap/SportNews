@@ -12,7 +12,7 @@ import com.gap.sportnews.domain.News
 import com.gap.sportnews.domain.NewsRepository
 
 class NewsRepositoryImpl(
-    private val application: Application
+    application: Application
 ) : NewsRepository {
     private val favouritesDao = AppDatabase.getInstance(application).favouritesDao()
     private val apiService = ApiFactory.apiService
@@ -32,14 +32,10 @@ class NewsRepositoryImpl(
         favouritesDao.addFavourites(FavouritesDbModel(id))
     }
 
-    override suspend fun getListFavorites(): List<Long> {
-        val list = favouritesDao.getListFavourites()
-        Log.d("getListFavorites", "${list.size}")
-        Log.d("getListFavorites", "getListFavorites is working")
-//        for (i in favouritesDao.getListFavourites()){
-////            Log.d("getListFavorites", i.id.toString())
-//        }
-        return favouritesDao.getListFavourites()
+    override suspend fun getListFavorites(): List<Favourites> {
+        return favouritesDao.getListFavourites().map {
+            mapper.mapFavouritesDbModelToFavourites(it)
+        }
     }
 
     override suspend fun deleteFavorites(id: Long) {
@@ -48,5 +44,9 @@ class NewsRepositoryImpl(
 
     override suspend fun deleteAllFavorites() {
         favouritesDao.deleteAllFavourites()
+    }
+
+    override suspend fun checkId(id: Int): Boolean {
+        return favouritesDao.getFavouriteById(id.toLong())
     }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.gap.sportnews.R
 import com.gap.sportnews.databinding.FragmentFavouritesBinding
 import com.gap.sportnews.presentation.adapter.FavouritesAdapter
 import com.gap.sportnews.presentation.adapter.NewsAdapter
@@ -39,19 +40,26 @@ class FavouritesFragment : Fragment() {
     }
 
     private fun workWithViewModel() {
-//        viewModel.getNewsList()
-//        viewModel.newsLD.observe(viewLifecycleOwner) {
-//            adapter.submitList(it)
-//        }
+        viewModel.getNewsList()
+        viewModel.newsLD.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
     private fun workWithAdapter() {
         binding.rvFavourites.adapter = adapter
         adapter.onNewsClickListener = object : FavouritesAdapter.OnNewsClickListener {
             override fun onNewsClick(id: Int) {
-//                launchNewsDetailsFragment(id)
+                launchNewsDetailsFragment(id)
             }
         }
 
+    }
+
+    private fun launchNewsDetailsFragment(id: Int) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container_view, NewsDetailsFragment.newInstance(id))
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onDestroyView() {

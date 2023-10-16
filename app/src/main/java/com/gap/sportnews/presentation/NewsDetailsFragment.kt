@@ -1,6 +1,7 @@
 package com.gap.sportnews.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.gap.sportnews.R
 import com.gap.sportnews.databinding.FragmentNewsDetailsBinding
 import com.gap.sportnews.presentation.viewModels.NewsDetailsViewModel
 import com.squareup.picasso.Picasso
+import kotlin.math.log
 
 class NewsDetailsFragment : Fragment() {
     private var _binding: FragmentNewsDetailsBinding? = null
@@ -22,8 +24,7 @@ class NewsDetailsFragment : Fragment() {
     private val viewModel: NewsDetailsViewModel by lazy {
         ViewModelProvider(this)[NewsDetailsViewModel::class.java]
     }
-
-    private var stateFavourite = false
+    private var stateFavourite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,17 +60,16 @@ class NewsDetailsFragment : Fragment() {
         binding.mainToolbarCommunication.setNavigationOnClickListener {
             requireActivity().onBackPressed()
         }
-        binding.toolbarImage.setOnClickListener {
-            stateFavourite = !stateFavourite
-            if (stateFavourite) {
-                binding.toolbarImage.setImageResource(R.drawable.ic_favourite_selected)
-                viewModel.addToDb(id.toLong())
-            } else {
-                binding.toolbarImage.setImageResource(R.drawable.ic_favourite)
-                viewModel.deleteInDb(id.toLong())
-            }
-        }
 
+
+    }
+
+    private fun initializedFavourites(stateFavourite: Boolean) {
+        if (stateFavourite) {
+            binding.toolbarImage.setImageResource(R.drawable.ic_favourite_selected)
+        } else {
+            binding.toolbarImage.setImageResource(R.drawable.ic_favourite)
+        }
     }
 
     private fun workWithViewModel() {
@@ -81,6 +81,24 @@ class NewsDetailsFragment : Fragment() {
                 tvBodyNews.text = it.content
                 tvCountComments.text = it.commentCount.toString()
                 tvDate.text = it.postedTime
+            }
+        }
+        viewModel.checkId(id)
+        viewModel.favouriteStateLD.observe(viewLifecycleOwner) {
+            initializedFavourites(it)
+            favouritesClickListener()
+        }
+    }
+
+    private fun favouritesClickListener() {
+        binding.toolbarImage.setOnClickListener {
+            stateFavourite = !stateFavourite
+            if (stateFavourite) {
+                binding.toolbarImage.setImageResource(R.drawable.ic_favourite_selected)
+                viewModel.addToDb(id.toLong())
+            } else {
+                binding.toolbarImage.setImageResource(R.drawable.ic_favourite)
+                viewModel.deleteInDb(id.toLong())
             }
         }
     }

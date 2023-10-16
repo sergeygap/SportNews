@@ -5,12 +5,13 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.gap.sportnews.domain.Favourites
 
 @Dao
 interface FavouritesDao {
     @Query("SELECT * FROM favourites")
-    fun getListFavourites(): List<Long>
+    suspend fun getListFavourites(): List<FavouritesDbModel>
+    @Query("SELECT EXISTS (SELECT 1 FROM favourites WHERE id = :id) != 0")
+    suspend fun getFavouriteById(id: Long): Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addFavourites(favourites: FavouritesDbModel)
