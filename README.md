@@ -8,10 +8,10 @@
  4. Экран "Избранные новости".
  5. Экран «Настройки».
 ## Технические детали реализации
- • Язык программирования: Kotlin;
- • Работа с UI: XML, Constraint Layout, Material Design, ViewBinding, Fragments (SAA);
- • Работа с данными: Retrofit, OkHttp, LiveData, Coroutines, Room;
- • Архитектурный паттерн: MVVM (Model-View-ViewModel), Clean Architecture.
+ 1. Язык программирования: Kotlin;
+ 2. Работа с UI: XML, Constraint Layout, Material Design, ViewBinding, Fragments (SAA);
+ 3. Работа с данными: Retrofit, OkHttp, LiveData, Coroutines, Room;
+ 4. Архитектурный паттерн: MVVM (Model-View-ViewModel), Clean Architecture.
 
 ## Контакты
 Tg: @sergeygap
